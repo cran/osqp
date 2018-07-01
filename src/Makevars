@@ -1,0 +1,37 @@
+OSQP_DIR=./osqp
+OSQP_LIB_DIR=$(OSQP_DIR)/lib
+OSQP_INCLUDE_DIR=$(OSQP_DIR)/include/osqp
+OSQP_STATIC_LIB=$(OSQP_LIB_DIR)/libosqpstatic.a
+
+OSQP_FLAGS=-DR_LANG=TRUE
+
+PKG_CXXFLAGS = $(OSQP_FLAGS) -I$(OSQP_INCLUDE_DIR)
+
+ROBJECTS = osqp_solve_interface.o RcppExports.o
+OBJECTS  = $(ROBJECTS) $(OSQP_STATIC_LIB)
+
+CXX_STD=CXX11
+
+.PHONY: all
+
+all: $(SHLIBS)
+
+$(SHLIBS): $(OSQP_STATIC_LIB)
+
+$(ROBJECTS): $(OSQP_STATIC_LIB)
+
+$(OSQP_STATIC_LIB):
+
+		# The OSQP static library should already exist and
+		# be in the correct place if we are building via cmake.
+		# If we find ourselves without cmake installed (e.g. because the
+		# package is being built in the CRAN servers), then we have
+		# a go at building the static library here.
+
+		(cd $(OSQP_DIR) && \
+		$(MAKE) CC="$(CC)" \
+		OSQP_FLAGS="$(OSQP_FLAGS)" \
+		R_INCLUDE_DIR="$(R_INCLUDE_DIR)" CFLAGS="$(CFLAGS)" \
+		CPICFLAGS="$(CPICFLAGS)" ARFLAGS="$(ARFLAGS)" \
+		AR="$(AR)" RANLIB="$(RANLIB)" \
+		&& $(MAKE) clean)
