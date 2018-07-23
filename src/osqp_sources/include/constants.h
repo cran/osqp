@@ -9,7 +9,7 @@ extern "C" {
 /*******************
 * OSQP Versioning *
 *******************/
-# define OSQP_VERSION ("0.3.1") /* string literals automatically null-terminated
+# define OSQP_VERSION ("0.4.0") /* string literals automatically null-terminated
                                    */
 
 
@@ -27,15 +27,16 @@ extern "C" {
 # ifdef PROFILING
 #  define OSQP_TIME_LIMIT_REACHED (-6)
 # endif // ifdef PROFILING
+# define OSQP_NON_CVX (-7)           /* problem non convex */
 # define OSQP_UNSOLVED (-10) /* Unsolved. Only setup function has been called */
 
 
 /*************************
 * Linear System Solvers *
 *************************/
-enum linsys_solver_type { SUITESPARSE_LDL_SOLVER, MKL_PARDISO_SOLVER };
+enum linsys_solver_type { QDLDL_SOLVER, MKL_PARDISO_SOLVER };
 static const char *LINSYS_SOLVER_NAME[] = {
-  "suitesparse ldl", "mkl pardiso"
+  "qdldl", "mkl pardiso"
 };
 
 /**********************************
@@ -50,7 +51,7 @@ static const char *LINSYS_SOLVER_NAME[] = {
 # define EPS_PRIM_INF (1E-4)
 # define EPS_DUAL_INF (1E-4)
 # define ALPHA (1.6)
-# define LINSYS_SOLVER (SUITESPARSE_LDL_SOLVER)
+# define LINSYS_SOLVER (QDLDL_SOLVER)
 
 # define RHO_MIN (1e-06)
 # define RHO_MAX (1e06)
@@ -73,6 +74,20 @@ static const char *LINSYS_SOLVER_NAME[] = {
 
 # define MIN_SCALING (1e-04) ///< Minimum scaling value
 # define MAX_SCALING (1e+04) ///< Maximum scaling value
+
+
+# ifndef OSQP_NULL
+#  define OSQP_NULL 0
+# endif /* ifndef OSQP_NULL */
+
+# ifndef OSQP_NAN
+#  define OSQP_NAN ((c_float)0x7fc00000UL) // Not a Number
+# endif /* ifndef OSQP_NAN */
+
+# ifndef OSQP_INFTY
+#  define OSQP_INFTY ((c_float)1e20) // Infinity
+# endif /* ifndef OSQP_INFTY */
+
 
 # if EMBEDDED != 1
 #  define ADAPTIVE_RHO (1)

@@ -22,7 +22,6 @@ extern "C" {
     #   include "mex.h"
 static void* c_calloc(size_t num, size_t size) {
   void *m = mxCalloc(num, size);
-
   mexMakeMemoryPersistent(m);
   return m;
 }
@@ -95,19 +94,6 @@ typedef double c_float; /* for numerical values  */
 typedef float c_float;  /* for numerical values  */
 # endif /* ifndef DFLOAT */
 
-
-/* Use customized constants -----------------------------------------------   */
-# ifndef OSQP_NULL
-#  define OSQP_NULL 0
-# endif /* ifndef OSQP_NULL */
-
-# ifndef OSQP_NAN
-#  define OSQP_NAN ((c_float)0x7ff8000000000000) // Not a Number
-# endif /* ifndef OSQP_NAN */
-
-# ifndef OSQP_INFTY
-#  define OSQP_INFTY ((c_float)1e20) // Infinity
-# endif /* ifndef OSQP_INFTY */
 
 /* Use customized operations */
 

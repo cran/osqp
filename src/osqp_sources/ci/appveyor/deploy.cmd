@@ -12,14 +12,14 @@ IF "%APPVEYOR_REPO_TAG%" == "true" (
     cd build
     cmake -G "%CMAKE_PROJECT%" ..
     cmake --build .
-    
+
     REM Go to output folder
     cd %APPVEYOR_BUILD_FOLDER%\build\out
 
     IF "%PLATFORM%" == "x86" (
-        set "OSQP_DEPLOY_DIR=osqp-0.3.1-windows32"
+        set "OSQP_DEPLOY_DIR=osqp-0.4.0-windows32"
     ) ELSE (
-        set "OSQP_DEPLOY_DIR=osqp-0.3.1-windows64"
+        set "OSQP_DEPLOY_DIR=osqp-0.4.0-windows64"
     )
     REM Create directories
     REM NB. We force expansion of the variable at execution time!
@@ -34,7 +34,7 @@ IF "%APPVEYOR_REPO_TAG%" == "true" (
     xcopy ..\..\include\*.h !OSQP_DEPLOY_DIR!\include
 
     REM Copy static library
-    xcopy libosqpstatic.a !OSQP_DEPLOY_DIR!\lib
+    xcopy libosqp.a !OSQP_DEPLOY_DIR!\lib
 
     REM Copy shared library
     xcopy libosqp.dll !OSQP_DEPLOY_DIR!\lib
@@ -44,11 +44,11 @@ IF "%APPVEYOR_REPO_TAG%" == "true" (
     7z a -tgzip !OSQP_DEPLOY_DIR!.tar.gz !OSQP_DEPLOY_DIR!.tar
 
     REM Deploy to Bintray
-    curl -T !OSQP_DEPLOY_DIR!.tar.gz -ubstellato:%BINTRAY_API_KEY% -H "X-Bintray-Package:OSQP" -H "X-Bintray-Version:0.3.1" https://api.bintray.com/content/bstellato/generic/OSQP/0.3.1/
+    curl -T !OSQP_DEPLOY_DIR!.tar.gz -ubstellato:%BINTRAY_API_KEY% -H "X-Bintray-Package:OSQP" -H "X-Bintray-Version:0.4.0" https://api.bintray.com/content/bstellato/generic/OSQP/0.4.0/
     if errorlevel 1 exit /b 1
 
     REM Publish
-    curl -X POST -ubstellato:%BINTRAY_API_KEY% https://api.bintray.com/content/bstellato/generic/OSQP/0.3.1/publish
+    curl -X POST -ubstellato:%BINTRAY_API_KEY% https://api.bintray.com/content/bstellato/generic/OSQP/0.4.0/publish
     if errorlevel 1 exit /b 1
 
 
