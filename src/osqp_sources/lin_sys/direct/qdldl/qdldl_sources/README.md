@@ -29,6 +29,8 @@ This will generate an `out/` folder with contents:
 - `qdldl_example`: a **code example** from [`examples/c/example.c`](./examples/c/example.c)
 - `libqdldl`: a static and a dynamic versions of the library.
 
+You can include an addition option `-DUNITTESTS=ON` when calling `cmake`, which will result in an additional executable `qdldl_tester` being built in the `out/` folder to test QDLDL on a variety of problems, including those with rank deficient or otherwise ill-formatted inputs.
+
 **N.B.** All files will have file extensions appropriate to your operating system.
 
 
@@ -66,7 +68,7 @@ QDLDL uses its own internal types for integers, floats and booleans (`QDLDL_int,
 - `DFLOAT` (default false): uses float numbers instead of doubles
 - `DLONG` (default true): uses long integers for indexing (for large matrices)
 
-Note that the `QDLDL_bool` type is defined as the standard `_Bool` type for C standards >= C99.  In earlier C standards the `_Bool` type was not defined and QDLDL sets `QDLDL_bool = QDLDL_int`.
+The `QDLDL_bool` is internally defined as `unsigned char`.
 
 
 ## Linking QDLDL
