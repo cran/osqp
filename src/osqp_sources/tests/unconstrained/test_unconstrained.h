@@ -5,10 +5,9 @@
 #include "unconstrained/data.h"
 
 
-static char* test_unconstrained_solve()
+static const char* test_unconstrained_solve()
 {
-  /* local variables */
-  c_int exitflag = 0; // No errors
+  c_int exitflag;
 
   // Problem settings
   OSQPSettings *settings = (OSQPSettings *)c_malloc(sizeof(OSQPSettings));
@@ -20,7 +19,7 @@ static char* test_unconstrained_solve()
 
 
   // Populate data
-  data      = generate_problem_unconstrained();
+  data = generate_problem_unconstrained();
   sols_data = generate_problem_unconstrained_sols_data();
 
 
@@ -29,10 +28,10 @@ static char* test_unconstrained_solve()
   settings->verbose = 1;
 
   // Setup workspace
-  work = osqp_setup(data, settings);
+  exitflag = osqp_setup(&work, data, settings);
 
   // Setup correct
-  mu_assert("Unconstrained test solve: Setup error!", work != OSQP_NULL);
+  mu_assert("Unconstrained test solve: Setup error!", exitflag == 0);
 
   // Solve Problem first time
   osqp_solve(work);
@@ -62,7 +61,7 @@ static char* test_unconstrained_solve()
   return 0;
 }
 
-static char* test_unconstrained()
+static const char* test_unconstrained()
 {
   mu_run_test(test_unconstrained_solve);
 

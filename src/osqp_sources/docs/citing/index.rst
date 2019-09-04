@@ -28,20 +28,20 @@ If you use OSQP for published work, we encourage you to put a star on `GitHub <h
           }
 
     Infeasibility detection
-        Infeasibility detection proofs using ADMM (also for general conic programs) in this `preprint <http://www.optimization-online.org/DB_FILE/2017/06/6058.pdf>`__.
+        Infeasibility detection proofs using ADMM (also for general conic programs) in this `preprint <https://stanford.edu/~boyd/papers/pdf/admm_infeas.pdf>`__.
 
         .. code:: latex
 
           @article{osqp-infeasibility,
             title   = {Infeasibility detection in the alternating direction method of multipliers for convex optimization},
+            journal = {Journal of Optimization Theory and Applications (To appear)},
             author  = {Banjac, G. and Goulart, P. and Stellato, B. and Boyd, S.},
-            journal = {optimization-online.org},
-            year    = {2017},
-            url     = {http://www.optimization-online.org/DB_HTML/2017/06/6058.html},
+            year    = {2019},
+            url     = {https://stanford.edu/~boyd/papers/pdf/admm_infeas.pdf},
           }
 
     Code generation
-        Code generation functionality and example in this `paper <http://stanford.edu/~boyd/papers/pdf/osqp_embedded.pdf>`__.
+        Code generation functionality and example in this `paper <http://stanford.edu/~boyd/papers/pdf/osqp_embedded.pdf>`_.
 
         .. code:: latex
 

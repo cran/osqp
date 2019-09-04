@@ -5,10 +5,9 @@
 #include "basic_qp2/data.h"
 
 
-static char* test_basic_qp2_solve()
+static const char* test_basic_qp2_solve()
 {
-  /* local variables */
-  c_int exitflag = 0; // No errors
+  c_int exitflag;
 
   // Problem settings
   OSQPSettings *settings = (OSQPSettings *)c_malloc(sizeof(OSQPSettings));
@@ -20,7 +19,7 @@ static char* test_basic_qp2_solve()
 
 
   // Populate data
-  data      = generate_problem_basic_qp2();
+  data = generate_problem_basic_qp2();
   sols_data = generate_problem_basic_qp2_sols_data();
 
 
@@ -32,10 +31,10 @@ static char* test_basic_qp2_solve()
   settings->verbose = 1;
 
   // Setup workspace
-  work = osqp_setup(data, settings);
+  exitflag = osqp_setup(&work, data, settings);
 
   // Setup correct
-  mu_assert("Basic QP 2 test solve: Setup error!", work != OSQP_NULL);
+  mu_assert("Basic QP 2 test solve: Setup error!", exitflag == 0);
 
   // Solve Problem first time
   osqp_solve(work);
@@ -75,8 +74,7 @@ static char* test_basic_qp2_solve()
 #ifdef ENABLE_MKL_PARDISO
 static char* test_basic_qp2_solve_pardiso()
 {
-  /* local variables */
-  c_int exitflag = 0; // No errors
+  c_int exitflag;
 
   // Problem settings
   OSQPSettings *settings = (OSQPSettings *)c_malloc(sizeof(OSQPSettings));
@@ -88,7 +86,7 @@ static char* test_basic_qp2_solve_pardiso()
 
 
   // Populate data
-  data      = generate_problem_basic_qp2();
+  data = generate_problem_basic_qp2();
   sols_data = generate_problem_basic_qp2_sols_data();
 
 
@@ -101,10 +99,10 @@ static char* test_basic_qp2_solve_pardiso()
   settings->linsys_solver = MKL_PARDISO_SOLVER;
 
   // Setup workspace
-  work = osqp_setup(data, settings);
+  exitflag = osqp_setup(&work, data, settings);
 
   // Setup correct
-  mu_assert("Basic QP 2 test solve: Setup error!", work != OSQP_NULL);
+  mu_assert("Basic QP 2 test solve: Setup error!", exitflag == 0);
 
   // Solve Problem first time
   osqp_solve(work);
@@ -145,10 +143,9 @@ static char* test_basic_qp2_solve_pardiso()
 }
 #endif
 
-static char* test_basic_qp2_update()
+static const char* test_basic_qp2_update()
 {
-  /* local variables */
-  c_int exitflag = 0; // No errors
+  c_int exitflag;
 
   // Problem settings
   OSQPSettings *settings = (OSQPSettings *)c_malloc(sizeof(OSQPSettings));
@@ -160,7 +157,7 @@ static char* test_basic_qp2_update()
 
 
   // Populate data
-  data      = generate_problem_basic_qp2();
+  data = generate_problem_basic_qp2();
   sols_data = generate_problem_basic_qp2_sols_data();
 
 
@@ -168,17 +165,15 @@ static char* test_basic_qp2_update()
   osqp_set_default_settings(settings);
   settings->alpha = 1.6;
 
-  // settings->eps_abs = 1e-08;
-  // settings->eps_rel = 1e-08;
   settings->warm_start = 1;
   settings->polish     = 1;
   settings->verbose    = 1;
 
   // Setup workspace
-  work = osqp_setup(data, settings);
+  exitflag = osqp_setup(&work, data, settings);
 
   // Setup correct
-  mu_assert("Basic QP 2 test update: Setup error!", work != OSQP_NULL);
+  mu_assert("Basic QP 2 test update: Setup error!", exitflag == 0);
 
 
   // Modify linear cost and upper bound
@@ -221,7 +216,7 @@ static char* test_basic_qp2_update()
   return 0;
 }
 
-static char* test_basic_qp2()
+static const char* test_basic_qp2()
 {
   mu_run_test(test_basic_qp2_solve);
 #ifdef ENABLE_MKL_PARDISO

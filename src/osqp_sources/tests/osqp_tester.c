@@ -12,6 +12,7 @@
 // Include tests
 #include "lin_alg/test_lin_alg.h"
 #include "solve_linsys/test_solve_linsys.h"
+#include "demo/test_demo.h"
 #include "basic_qp/test_basic_qp.h"
 #include "basic_qp2/test_basic_qp2.h"
 #include "non_cvx/test_non_cvx.h"
@@ -24,9 +25,10 @@
 int tests_run = 0;
 
 
-static char* all_tests() {
+static const char* all_tests() {
   mu_run_test(test_lin_alg);
   mu_run_test(test_solve_linsys);
+  mu_run_test(test_demo);
   mu_run_test(test_basic_qp);
   mu_run_test(test_basic_qp2);
   mu_run_test(test_non_cvx);
@@ -38,7 +40,7 @@ static char* all_tests() {
 }
 
 int main(void) {
-  char *result = all_tests();
+  const char *result = all_tests();
 
   if (result != 0) {
     printf("%s\n", result);

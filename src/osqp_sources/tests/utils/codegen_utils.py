@@ -1,7 +1,7 @@
 # Compatibility with Python 2
 from __future__ import print_function
 
-import scipy.sparse as spa
+from scipy import sparse
 import numpy as np
 
 
@@ -30,7 +30,7 @@ def write_vec_int(f, x, name, *args):
             f.write("%s->" % arg)
     else:
         f.write("c_int * ")
-    f.write("%s = c_malloc(%i * sizeof(c_int));\n" % (name, n))
+    f.write("%s = (c_int*) c_malloc(%i * sizeof(c_int));\n" % (name, n))
 
     for i in range(n):
         for arg in args:
@@ -46,7 +46,7 @@ def write_vec_float(f, x, name, *args):
             f.write("%s->" % arg)
     else:
         f.write("c_float * ")
-    f.write("%s = c_malloc(%i * sizeof(c_float));\n" % (name, n))
+    f.write("%s = (c_float*) c_malloc(%i * sizeof(c_float));\n" % (name, n))
 
     for i in range(n):
         for arg in args:
@@ -84,7 +84,7 @@ def write_mat_sparse(f, A, name, *args):
             f.write("%s->" % arg)
     else:
         f.write("csc * ")
-    f.write(name + " = c_malloc(sizeof(csc));\n")
+    f.write(name + " = (csc*) c_malloc(sizeof(csc));\n")
 
     # Write dimensions and number of nonzeros
     if any(args):
@@ -104,7 +104,7 @@ def write_mat_sparse(f, A, name, *args):
         f.write("%s->x = OSQP_NULL;\n" % name)
     else:
         f.write("%s->" % name)
-        f.write("x = c_malloc(%i * sizeof(c_float));\n" % A.nnz)
+        f.write("x = (c_float*) c_malloc(%i * sizeof(c_float));\n" % A.nnz)
         for i in range(A.nnz):
             for arg in args:
                 f.write("%s->" % arg)
@@ -117,7 +117,7 @@ def write_mat_sparse(f, A, name, *args):
         f.write("%s->i = OSQP_NULL;\n" % name)
     else:
         f.write("%s->" % name)
-        f.write("i = c_malloc(%i * sizeof(c_int));\n" % A.nnz)
+        f.write("i = (c_int*) c_malloc(%i * sizeof(c_int));\n" % A.nnz)
         for i in range(A.nnz):
             for arg in args:
                 f.write("%s->" % arg)
@@ -127,7 +127,7 @@ def write_mat_sparse(f, A, name, *args):
     for arg in args:
         f.write("%s->" % arg)
     f.write("%s->" % name)
-    f.write("p = c_malloc((%i + 1) * sizeof(c_int));\n" % n)
+    f.write("p = (c_int*) c_malloc((%i + 1) * sizeof(c_int));\n" % n)
     for i in range(A.shape[1] + 1):
         for arg in args:
             f.write("%s->" % arg)
@@ -216,6 +216,13 @@ def generate_problem_data(P, q, A, l, u, problem_name, sols_data={}):
                 f.write("c_float %s;\n" % key)
     f.write("} %s_sols_data;\n\n" % problem_name)
 
+    # prototypes
+    f.write("/* function prototypes */\n")
+    f.write("OSQPData * generate_problem_%s();\n" % problem_name)
+    f.write("void clean_problem_%s(OSQPData * data);\n" % problem_name)
+    f.write("%s_sols_data *  generate_problem_%s_sols_data();\n" % (problem_name, problem_name))
+    f.write("void clean_problem_%s_sols_data(%s_sols_data * data);\n" % (problem_name, problem_name))
+    f.write("\n\n")
 
     #
     # Generate QP problem data
@@ -373,7 +380,7 @@ def generate_data(problem_name, sols_data):
             # Status test get from C code
             f.write("c_int %s;\n" % key)
         # Check if it is an array or a scalar
-        elif spa.issparse(value):  # Sparse matrix
+        elif sparse.issparse(value):  # Sparse matrix
             f.write("csc * %s;\n" % key)
         elif isinstance(value, np.ndarray):
             if isinstance(value.flatten(order='F')[0], int):
@@ -386,6 +393,12 @@ def generate_data(problem_name, sols_data):
             elif isinstance(value, float):
                 f.write("c_float %s;\n" % key)
     f.write("} %s_sols_data;\n\n" % problem_name)
+
+    # prototypes
+    f.write("/* function prototypes */\n")
+    f.write("%s_sols_data *  generate_problem_%s_sols_data();\n" % (problem_name, problem_name))
+    f.write("void clean_problem_%s_sols_data(%s_sols_data * data);\n" % (problem_name, problem_name))
+    f.write("\n\n")
 
     #
     # Generate additional problem data for solutions
@@ -407,7 +420,7 @@ def generate_data(problem_name, sols_data):
             elif value == 'dual_infeasible':
                 f.write("data->%s = %s;\n" % (key, 'OSQP_DUAL_INFEASIBLE'))
         # Check if it is an array or a scalar
-        elif spa.issparse(value):  # Sparse matrix
+        elif sparse.issparse(value):  # Sparse matrix
             write_mat_sparse(f, value, key, "data")
         elif type(value) is np.ndarray:
             if isinstance(value.flatten(order='F')[0], int):
@@ -434,7 +447,7 @@ def generate_data(problem_name, sols_data):
     # Generate further data and solutions
     for key, value in sols_data.items():
         # Check if it is an array or a scalar
-        if spa.issparse(value):  # Sparse matrix
+        if sparse.issparse(value):  # Sparse matrix
             clean_mat(f, key, "data")
         elif type(value) is np.ndarray:
             clean_vec(f, key, "data")
