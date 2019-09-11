@@ -1,12 +1,12 @@
 Package: osqp
 Title: Quadratic Programming Solver using the 'OSQP' Library
-Version: 0.6.0.1
-Date: 2019-09-05
+Version: 0.6.0.2
+Date: 2019-09-09
 Authors@R: c(
-  person("Bartolomeo", "Stellato", role = c("cre", "aut", "ctb", "cph"),
-         email = "bartolomeo.stellato@gmail.com"),
+  person("Bartolomeo", "Stellato", role = c("aut", "ctb", "cph")),
   person("Goran", "Banjac", role = c("aut", "ctb", "cph")),
-  person("Paul", "Goulart", role = c("aut", "ctb", "cph")),
+  person("Paul", "Goulart", role = c("cre", "aut", "ctb", "cph"),
+          email = "paul.goulart@eng.ox.ac.uk"),
   person("Stephen", "Boyd", role = c("aut", "ctb", "cph")),
   person("Eric", "Anderson", role=c("ctb")))
 Copyright: file COPYRIGHT
@@ -19,12 +19,12 @@ Collate: 'RcppExports.R' 'osqp-package.R' 'solve.R' 'osqp.R' 'params.R'
 NeedsCompilation: yes
 Suggests: testthat
 URL: https://www.osqp.org
-Packaged: 2019-09-06 18:45:08 UTC; pgoulart
-Author: Bartolomeo Stellato [cre, aut, ctb, cph],
+Packaged: 2019-09-10 17:02:19 UTC; pgoulart
+Author: Bartolomeo Stellato [aut, ctb, cph],
   Goran Banjac [aut, ctb, cph],
-  Paul Goulart [aut, ctb, cph],
+  Paul Goulart [cre, aut, ctb, cph],
   Stephen Boyd [aut, ctb, cph],
   Eric Anderson [ctb]
-Maintainer: Bartolomeo Stellato <bartolomeo.stellato@gmail.com>
+Maintainer: Paul Goulart <paul.goulart@eng.ox.ac.uk>
 Repository: CRAN
-Date/Publication: 2019-09-07 21:30:08 UTC
+Date/Publication: 2019-09-11 04:30:02 UTC
