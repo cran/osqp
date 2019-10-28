@@ -1,7 +1,7 @@
-83521226281a51ea7b9630369e25bb96 *DESCRIPTION
+287334296fa43af73aaacc11519f2849 *DESCRIPTION
 86d3f3a95c324c9479bd8986968f4327 *LICENSE
 894a0f0a96f8e59984146f76d7105e7d *NAMESPACE
-de4bf8ada6a76d67e4b6da8af9be980d *NEWS.md
+36ee3ab2911afe22385ea021e4233d1f *NEWS.md
 e48758788ad3f192707848ebc49c883c *R/RcppExports.R
 49e9ebfcf86958deb1c6a3049ce29201 *R/osqp-package.R
 ba3bf7683ade7ef69f1219e5a014fe4a *R/osqp.R
@@ -17,7 +17,7 @@ b317c25925947cfe8da63be24b4b681a *man/osqpSettings.Rd
 03f9930324ac64567b0e8c0d464364e2 *src/RcppExports.cpp
 e6cec6f957eac5cf0725ee83f0898896 *src/osqp/Makefile
 6ae2a22400004a988f799f2e76f396c0 *src/osqp_configure_R.h
-467f8f01c91ed3f1615381baae61cbfe *src/osqp_solve_interface.cpp
+8748fdd336b64bcb27e4736c7ca7b069 *src/osqp_solve_interface.cpp
 0f324d4b8667b5b6573d5a0ac6a36679 *src/osqp_sources/CHANGELOG.md
 e67e7f86b34dc6255765cdf8e6095b6a *src/osqp_sources/CMakeLists.txt
 821340705d7c6d62f65d3b0d88cac726 *src/osqp_sources/LICENSE

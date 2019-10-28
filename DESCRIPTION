@@ -1,12 +1,13 @@
 Package: osqp
 Title: Quadratic Programming Solver using the 'OSQP' Library
-Version: 0.6.0.2
-Date: 2019-09-09
+Version: 0.6.0.3
+Date: 2019-10-28
 Authors@R: c(
-  person("Bartolomeo", "Stellato", role = c("aut", "ctb", "cph")),
+  person("Bartolomeo", "Stellato", role = c("aut", "ctb", "cph"),
+         email = "bartolomeo.stellato@gmail.com"),
   person("Goran", "Banjac", role = c("aut", "ctb", "cph")),
   person("Paul", "Goulart", role = c("cre", "aut", "ctb", "cph"),
-          email = "paul.goulart@eng.ox.ac.uk"),
+         email = "paul.goulart@eng.ox.ac.uk"),
   person("Stephen", "Boyd", role = c("aut", "ctb", "cph")),
   person("Eric", "Anderson", role=c("ctb")))
 Copyright: file COPYRIGHT
@@ -19,7 +20,7 @@ Collate: 'RcppExports.R' 'osqp-package.R' 'solve.R' 'osqp.R' 'params.R'
 NeedsCompilation: yes
 Suggests: testthat
 URL: https://www.osqp.org
-Packaged: 2019-09-10 17:02:19 UTC; pgoulart
+Packaged: 2019-10-28 15:40:08 UTC; pgoulart
 Author: Bartolomeo Stellato [aut, ctb, cph],
   Goran Banjac [aut, ctb, cph],
   Paul Goulart [cre, aut, ctb, cph],
@@ -27,4 +28,4 @@ Author: Bartolomeo Stellato [aut, ctb, cph],
   Eric Anderson [ctb]
 Maintainer: Paul Goulart <paul.goulart@eng.ox.ac.uk>
 Repository: CRAN
-Date/Publication: 2019-09-11 04:30:02 UTC
+Date/Publication: 2019-10-28 16:20:05 UTC
