@@ -1,4 +1,4 @@
-d49797a495fc28350891b7c2653c1b56 *DESCRIPTION
+14aecb38c9f67bbe0e7fd810e55b76da *DESCRIPTION
 86d3f3a95c324c9479bd8986968f4327 *LICENSE
 894a0f0a96f8e59984146f76d7105e7d *NAMESPACE
 36ee3ab2911afe22385ea021e4233d1f *NEWS.md
@@ -33,7 +33,7 @@ d71cafa201494995e50c6e65f2c68d94 *src/osqp_sources/ci/travis/docs.sh
 a136dd454fe6159525144983492bcb70 *src/osqp_sources/ci/travis/install.sh
 88d5f81e13badfd8a1bda4eed31e1cb5 *src/osqp_sources/ci/travis/script.sh
 3946d366c169b32f9e0bc0f66a03dfc9 *src/osqp_sources/configure/cmake/FindPythonModule.cmake
-530dda6ebf2a7b27b9791c676933ddc3 *src/osqp_sources/configure/cmake/FindR.cmake
+138cbab8506d90777191d243fe77b8ec *src/osqp_sources/configure/cmake/FindR.cmake
 acc7aa4b391861eb5f9af5026605bdf9 *src/osqp_sources/configure/cmake/Utils.cmake
 467e128524736e34d13a6b043fc115f7 *src/osqp_sources/configure/cmake/cmake_uninstall.cmake.in
 7f500b6ecfdc03dbc89c06ab3811f55d *src/osqp_sources/configure/osqp_configure.h.in
