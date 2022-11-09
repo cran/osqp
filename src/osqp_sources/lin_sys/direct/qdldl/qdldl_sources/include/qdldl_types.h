@@ -9,13 +9,7 @@ extern "C" {
 
 typedef long long    QDLDL_int;   /* for indices */
 typedef double  QDLDL_float; /* for numerical values  */
-
-// Use bool for logical type if available
-#if __STDC_VERSION__ >= 199901L
-typedef _Bool QDLDL_bool;
-#else
-typedef int   QDLDL_bool;
-#endif
+typedef unsigned char   QDLDL_bool;  /* for boolean values  */
 
 # ifdef __cplusplus
 }
