@@ -22,7 +22,7 @@ typedef void (*pardiso_t)(void**, const c_int*, const c_int*, const c_int*,
                           const c_int*, c_int*, const c_int*, c_float*,
                           c_float*, c_int*);
 typedef int (*mkl_set_ifl_t)(int);
-typedef int (*mkl_get_mt_t)(void);
+typedef int (*mkl_get_mt_t)();
 
 
 // Handlers are static variables
@@ -55,7 +55,7 @@ c_int mkl_set_interface_layer(c_int code) {
     return (c_int)func_mkl_set_interface_layer((int)code);
 }
 
-c_int mkl_get_max_threads(void) {
+c_int mkl_get_max_threads() {
     return (c_int)func_mkl_get_max_threads();
 }
 
@@ -87,7 +87,7 @@ c_int lh_load_pardiso(const char* libname) {
     return 0;
 }
 
-c_int lh_unload_pardiso(void) {
+c_int lh_unload_pardiso() {
 
     if (Pardiso_handle == OSQP_NULL) return 0;
 
