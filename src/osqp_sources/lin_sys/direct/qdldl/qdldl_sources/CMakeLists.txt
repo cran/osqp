@@ -60,8 +60,10 @@ endif()
 
 if(DLONG)
   set(QDLDL_INT_TYPE "long long")
+	set(QDLDL_INT_TYPE_MAX "LLONG_MAX")
 else()
 	set(QDLDL_INT_TYPE "int")
+	set(QDLDL_INT_TYPE_MAX "INT_MAX")
 endif()
 
 #boolean type is always unsigned char
@@ -97,6 +99,8 @@ target_include_directories(qdldlobject PRIVATE ${PROJECT_SOURCE_DIR}/include)
 # Create Static Library
 # ----------------------------------------------
 
+include(GNUInstallDirs)
+
 # Static library
 add_library (qdldlstatic STATIC ${qdldl_src} ${qdldl_headers})
 # Give same name to static library output
@@ -109,8 +113,6 @@ target_include_directories(qdldlstatic
 
 # Install Static Library
 # ----------------------------------------------
-
-include(GNUInstallDirs)
 
 install(TARGETS qdldlstatic
         EXPORT  ${PROJECT_NAME}
