@@ -1,7 +1,7 @@
 Package: osqp
 Title: Quadratic Programming Solver using the 'OSQP' Library
-Version: 0.6.3
-Date: 2023-10-02
+Version: 0.6.3.1
+Date: 2023-10-03
 Authors@R: c(
   person("Bartolomeo", "Stellato", role = c("aut", "ctb", "cph"),
          email = "bartolomeo.stellato@gmail.com"),
@@ -22,11 +22,11 @@ RoxygenNote: 7.2.3
 Collate: 'RcppExports.R' 'osqp-package.R' 'sparse.R' 'solve.R' 'osqp.R'
         'params.R'
 NeedsCompilation: yes
-Suggests: testthat
+Suggests: slam, testthat
 Encoding: UTF-8
 BugReports: https://github.com/osqp/osqp-r/issues
 URL: https://osqp.org
-Packaged: 2023-10-03 14:09:53 UTC; naras
+Packaged: 2023-10-04 01:30:06 UTC; naras
 Author: Bartolomeo Stellato [aut, ctb, cph],
   Goran Banjac [aut, ctb, cph],
   Paul Goulart [aut, ctb, cph],
@@ -36,4 +36,4 @@ Author: Bartolomeo Stellato [aut, ctb, cph],
   Balasubramanian Narasimhan [cre, ctb]
 Maintainer: Balasubramanian Narasimhan <naras@stanford.edu>
 Repository: CRAN
-Date/Publication: 2023-10-03 16:10:02 UTC
+Date/Publication: 2023-10-04 15:10:06 UTC
