@@ -1,4 +1,4 @@
-b729670fd48fc5781c726ba01930b394 *DESCRIPTION
+731b131ddeb2a37b510aa244ce7d705e *DESCRIPTION
 86d3f3a95c324c9479bd8986968f4327 *LICENSE
 894a0f0a96f8e59984146f76d7105e7d *NAMESPACE
 950e99a300f6120f4893d195c9102bf9 *NEWS.md
@@ -9,14 +9,13 @@ a975285525e6256548424baba51a81f4 *R/params.R
 4733fcf916663839ae2c4313ce62b4a6 *R/solve.R
 6fe9c8562d9d20f8ae3896b3af5e3dcb *R/sparse.R
 9b0681662376779f5ba50edb3b7be271 *README.md
-66fe534b0125fee4f2e401d60a71bade *configure
-20e8ab39a989bb25dfe36de35e21ffd5 *inst/58f00bd_fixes/make_fixes.R
+a8ccfee2d24bd45c8df849d22b7c0372 *inst/0dd00a57_fixes/make_fixes.R
 26b01dfdc64ba835ea82698d971dccdf *inst/COPYRIGHT
 92668487a8b12842984d1630df2bc36d *man/osqp.Rd
 5e93433e868418963980d4749d3173cd *man/osqpSettings.Rd
 6c07c94148a47262e8ebcbdbdb471886 *man/solve_osqp.Rd
-ba59269e342d3797831ee111e58d08fb *src/Makevars
-df9fb63ca7959d8f98e48d5ef3460198 *src/Makevars.win
+0b388eb19ed8ddfefe78c62d2a5d9a6c *src/Makevars
+5c54155591d350f190b60dac6468d1a5 *src/Makevars.win
 513691b59d79655306ecacc59c706fca *src/RcppExports.cpp
 3b550b21f564fb72093339406d6f2c1a *src/osqp/Makefile
 6ae2a22400004a988f799f2e76f396c0 *src/osqp_configure_R.h
